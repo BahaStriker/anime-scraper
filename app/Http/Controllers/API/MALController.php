@@ -13,6 +13,7 @@ class MALController extends Controller
 {
     private $client;
     private $list;
+    private $hello = array();
 
     public function __construct(Client $client)
     {
@@ -25,14 +26,33 @@ class MALController extends Controller
         // $crawler = new Crawler($html);
 
         // $crawler->filter('body > div.wrapper > div.main-content.mt-3 > div.container > div.row.mt-3 > aside.col-xs-12.col-lg-8 > section > div.body > ul.anime-list-v');
-        $crawler = $this->client->request('GET', 'https://animekisa.tv/one-punch-man');
+        $crawler = $this->client->request('GET', 'https://gogoanime.cm/category/hackgu-returner');
         //dd($crawler);
 
         //$crawler->filter('body > div.wrapper > div.main-content.mt-3 > div.container > div.row.mt-3 > aside.col-xs-12.col-lg-8 > section > div.body > ul.anime-list-v > li > div.info > a')->each(function ($node) {
         //$crawler->filter('body > div#body > div.container > aside.main > section > div.body > ul.anime-list-v > li > div.info > a[href]')->each(function ($node) {
-        // $crawler->filter('body > div#body > div.container > aside.main > section > div.body > ul.anime-list-v > li > div.info')->each(function ($node) {
-        //     dd($node->text());
+        // $crawler->filter('body > div#wrapper_inside > div#wrapper > div#wrapper_bg > section.content > section.content_left > div.main_body > div.anime_list_body > ul.listing > li > a')->each(function ($node) {
+        //     $this->list .= $node->text() . '|' . $node->attr('href') . '</br>';
         // });
+        $hello = array('hi');
+        $img = $crawler->filter('body > div#wrapper_inside > div#wrapper > div#wrapper_bg > section.content > section.content_left > div.main_body > div.anime_info_body > div.anime_info_body_bg > img')->attr('src');
+        $episodes = $crawler->filter('body > div#wrapper_inside > div#wrapper > div#wrapper_bg > section.content > section.content_left > div.main_body > div.anime_video_body > ul#episode_page > li > a')->attr('ep_end');
+        $type = $crawler->filter('body > div#wrapper_inside > div#wrapper > div#wrapper_bg > section.content > section.content_left > div.main_body > div.anime_info_body > div.anime_info_body_bg > p.type > a')->text();
+        $desc = $crawler->filter('body > div#wrapper_inside > div#wrapper > div#wrapper_bg > section.content > section.content_left > div.main_body > div.anime_info_body > div.anime_info_body_bg > p.type')->each(function ($node) {
+            array_push($this->hello, $node->text());
+        });
+        $this->list = $img . ' | ' . $type;
+        $array = array();
+
+        foreach($this->hello as $hello)
+        {
+            $key = strtok($hello, ':');
+            $array[$key] = substr($hello, strpos($hello, ":") + 2);
+            //dd(substr($hello, strpos($hello, ":") + 2));
+        }
+
+        dd($episodes);
+
         // $crawler->filter('body > div#body > div.container > aside.main > section > div.body > ul.anime-list-v > li > div.info')->each(function ($node) {
         //     $url = $node->filter('a');
         //     $ep = $node->filter('div.meta > div.ep');
@@ -43,10 +63,10 @@ class MALController extends Controller
         //     $img = $node->filter('img')->attr('src');
         // });
 
-        $getMAL = new MyAnimeList();
-        $getMAL->pretty = true;
+        // $getMAL = new MyAnimeList();
+        // $getMAL->pretty = true;
 
-        $this->list = json_decode($getMAL->findAnime('.hack//Gift', false));
+        // $this->list = json_decode($getMAL->findAnime('.hack//Gift', false));
 
         //animekisa.tv
 

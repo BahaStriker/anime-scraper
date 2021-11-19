@@ -50,23 +50,26 @@ class AnimeNameCrawler extends Command
 
     public function scrape()
     {
-        $client = new Client();
-        $crawler = $client->request('GET', 'https://animekisa.tv/anime');
-        $crawler->filter('body > div.main-container > div.inner-main-container > div.notmain > div.maindark > div.lisbox > a')->each(function ($node) {
-            $url = $node->attr('href');
-            $title = $node->text();
-            $animeCheck = Anime::where('name_english', $title)->first();
-            if(!$animeCheck)
-            {
-                $anime = new Anime();
-                $anime->name_english = $title;
-                $anime->link = $url;
-                $anime->save();
-                $this->info($url . ' Saved!');
-            }
-            else {
-                $this->info($url . ' Exists!');
-            }
-        });
+        $pages = 74;
+        for($i=1;$i<=$pages;$i++)
+        {
+            $client = new Client();
+            $crawler = $client->request('GET', 'https://gogoanime.cm/anime-list.html?page=' . $i);
+            $crawler->filter('body > div#wrapper_inside > div#wrapper > div#wrapper_bg > section.content > section.content_left > div.main_body > div.anime_list_body > ul.listing > li > a')->each(function ($node) {
+                $url = $node->attr('href');
+                $title = $node->text();
+                $animeCheck = Anime::where('name_english', $title)->first();
+                if (!$animeCheck) {
+                    $anime = new Anime();
+                    $anime->name_english = $title;
+                    $anime->link = $url;
+                    $anime->save();
+                    $this->info($title . ' Saved!');
+                } else {
+                    $this->info($title . ' Exists!');
+                }
+            });
+        }
+
     }
 }

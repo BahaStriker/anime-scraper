@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Goutte\Client;
 use App\Models\Anime;
 use \aalfiann\MyAnimeList;
+use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 
 class AnimeDetailsCrawler extends Command
@@ -22,6 +23,8 @@ class AnimeDetailsCrawler extends Command
      * @var string
      */
     protected $description = 'Crawl Anime Details';
+
+    private $data = array();
 
     /**
      * Create a new command instance.
@@ -48,6 +51,61 @@ class AnimeDetailsCrawler extends Command
     }
 
     public function scrape()
+    {
+        $animes = Anime::get();
+
+        foreach($animes as $anime)
+        {
+            $client = new Client();
+
+            $crawler = $client->request('GET', 'https://gogoanime.cm' . $anime->link);
+            $img = $crawler->filter('body > div#wrapper_inside > div#wrapper > div#wrapper_bg > section.content > section.content_left > div.main_body > div.anime_info_body > div.anime_info_body_bg > img')->attr('src');
+            $episodes = $crawler->filter('body > div#wrapper_inside > div#wrapper > div#wrapper_bg > section.content > section.content_left > div.main_body > div.anime_video_body > ul#episode_page > li > a')->attr('ep_end');
+            $crawler->filter('body > div#wrapper_inside > div#wrapper > div#wrapper_bg > section.content > section.content_left > div.main_body > div.anime_info_body > div.anime_info_body_bg > p.type')->each(function ($node) {
+                array_push($this->data, $node->text());
+            });
+
+            $array = array();
+
+            foreach ($this->data as $data) {
+                $key = strtok($data, ':');
+                $array[$key] = substr($data, strpos($data, ":") + 2);
+            }
+
+            $anime->thumnail = $this->downloadThumbnail($img);
+            $anime->type = $array['Type'] ?? '';
+            $anime->description = $array['Plot Summary'] ?? '';
+            $anime->country = $array['Genre'] ?? '';
+            $anime->year = $array['Released'] ?? '';
+            $anime->status = $array['Status'] ?? '';
+            $anime->name_japanese = $array['Other name'] ?? '';
+            $anime->episodes = $episodes ?? '';
+
+            if($anime->save()) {
+                $this->info($anime->name_english . ' Saved!');
+            } else {
+                $this->info($anime->name_english . ' ERROR!!!!');
+            }
+            sleep(1);
+        }
+    }
+
+    private function downloadThumbnail($url){
+        try {
+            $extension = pathinfo($url, PATHINFO_EXTENSION);
+            $filename = 'animes/thumbnails/'.Str::random(5).'.'.$extension;
+            $fullpath = 'public/'.$filename;
+            $file = file_get_contents($url);
+            file_put_contents($fullpath, $file);
+
+            return $filename;
+        } catch (\Exception $e) {
+            //dd($e);
+        }
+        return null;
+    }
+
+    public function scrapeMAL()
     {
         $animes = Anime::get();
 
