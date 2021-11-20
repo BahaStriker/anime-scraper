@@ -56,37 +56,41 @@ class AnimeDetailsCrawler extends Command
 
         foreach($animes as $anime)
         {
-            $client = new Client();
+            if($anime->thumnail == NULL)
+            {
+                $client = new Client();
 
-            $crawler = $client->request('GET', 'https://gogoanime.cm' . $anime->link);
-            $img = $crawler->filter('body > div#wrapper_inside > div#wrapper > div#wrapper_bg > section.content > section.content_left > div.main_body > div.anime_info_body > div.anime_info_body_bg > img')->attr('src');
-            $episodes = $crawler->filter('body > div#wrapper_inside > div#wrapper > div#wrapper_bg > section.content > section.content_left > div.main_body > div.anime_video_body > ul#episode_page > li > a')->attr('ep_end');
-            $crawler->filter('body > div#wrapper_inside > div#wrapper > div#wrapper_bg > section.content > section.content_left > div.main_body > div.anime_info_body > div.anime_info_body_bg > p.type')->each(function ($node) {
-                array_push($this->data, $node->text());
-            });
+                $crawler = $client->request('GET', 'https://gogoanime.cm' . $anime->link);
+                $img = $crawler->filter('body > div#wrapper_inside > div#wrapper > div#wrapper_bg > section.content > section.content_left > div.main_body > div.anime_info_body > div.anime_info_body_bg > img')->attr('src');
+                $episodes = $crawler->filter('body > div#wrapper_inside > div#wrapper > div#wrapper_bg > section.content > section.content_left > div.main_body > div.anime_video_body > ul#episode_page > li > a')->attr('ep_end');
+                $crawler->filter('body > div#wrapper_inside > div#wrapper > div#wrapper_bg > section.content > section.content_left > div.main_body > div.anime_info_body > div.anime_info_body_bg > p.type')->each(function ($node) {
+                    array_push($this->data, $node->text());
+                });
 
-            $array = array();
+                $array = array();
 
-            foreach ($this->data as $data) {
-                $key = strtok($data, ':');
-                $array[$key] = substr($data, strpos($data, ":") + 2);
+                foreach ($this->data as $data) {
+                    $key = strtok($data, ':');
+                    $array[$key] = substr($data, strpos($data, ":") + 2);
+                }
+
+                $anime->thumnail = $this->downloadThumbnail($img);
+                $anime->type = $array['Type'] ?? '';
+                $anime->description = $array['Plot Summary'] ?? '';
+                $anime->country = $array['Genre'] ?? '';
+                $anime->year = $array['Released'] ?? '';
+                $anime->status = $array['Status'] ?? '';
+                $anime->name_japanese = $array['Other name'] ?? '';
+                $anime->episodes = $episodes ?? '';
+
+                if ($anime->save()) {
+                    $this->info($anime->name_english . ' Saved!');
+                } else {
+                    $this->info($anime->name_english . ' ERROR!!!!');
+                }
+                sleep(1);
             }
 
-            $anime->thumnail = $this->downloadThumbnail($img);
-            $anime->type = $array['Type'] ?? '';
-            $anime->description = $array['Plot Summary'] ?? '';
-            $anime->country = $array['Genre'] ?? '';
-            $anime->year = $array['Released'] ?? '';
-            $anime->status = $array['Status'] ?? '';
-            $anime->name_japanese = $array['Other name'] ?? '';
-            $anime->episodes = $episodes ?? '';
-
-            if($anime->save()) {
-                $this->info($anime->name_english . ' Saved!');
-            } else {
-                $this->info($anime->name_english . ' ERROR!!!!');
-            }
-            sleep(1);
         }
     }
 
