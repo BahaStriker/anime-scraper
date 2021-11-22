@@ -15,12 +15,12 @@ class CreateEpisodesTable extends Migration
     {
         Schema::create('episodes', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('server_name');
-            $table->string('server_link');
-            $table->string('link');
-            $table->integer('order');
-            $table->integer('anime_id');
+            $table->string('title')->nullable();
+            $table->string('server_name')->nullable();
+            $table->string('server_link')->nullable();
+            $table->string('link')->nullable();
+            $table->integer('order')->nullable();
+            $table->integer('anime_id')->nullable();
             $table->timestamps();
         });
     }
