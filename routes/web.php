@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnimeController;
 use App\Http\Controllers\API\MALController;
 use App\Models\Anime;
 use Illuminate\Support\Facades\Route;
@@ -20,3 +21,8 @@ Route::get('/', function () {
 });
 
 Route::get('/crawl', [MALController::class, 'index'])->name('index');
+
+//Anime Routes
+Route::get('/{slug}',[AnimeController::class,'details'])->name('anime.details');
+Route::get('/episodes/{slug}',[AnimeController::class,'watch'])->name('anime.watch');
+//End Anime Routes
