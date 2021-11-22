@@ -59,13 +59,13 @@ class AnimeNameCrawler extends Command
                 $title = $node->text();
                 $animeCheck = Anime::where('name_english', $title)->first();
                 if (!$animeCheck) {
+                    $slug = explode('/', $url);
                     $anime = new Anime();
                     $anime->name_english = $title;
                     $anime->link = $url;
+                    $anime->slug = end($slug);
                     $anime->save();
                     $this->info($title . ' Saved!');
-                } else {
-                    $this->info($title . ' Exists!');
                 }
             });
         }

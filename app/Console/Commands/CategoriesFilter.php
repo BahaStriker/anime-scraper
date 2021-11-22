@@ -46,11 +46,11 @@ class CategoriesFilter extends Command
 
     public function cat()
     {
-        $animes = Anime::whereNotNull('country')->get();
+        $animes = Anime::whereNotNull('genres')->get();
 
         foreach($animes as $anime)
         {
-            $genres = explode(', ', $anime->country);
+            $genres = explode(', ', $anime->genres);
             foreach($genres as $genre)
             {
                 $category = Category::where('name', $genre)->first();

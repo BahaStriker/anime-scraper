@@ -77,7 +77,7 @@ class AnimeDetailsCrawler extends Command
                 $anime->thumnail = $this->downloadThumbnail($img);
                 $anime->type = $array['Type'] ?? '';
                 $anime->description = $array['Plot Summary'] ?? '';
-                $anime->country = $array['Genre'] ?? '';
+                $anime->genres = $array['Genre'] ?? '';
                 $anime->year = $array['Released'] ?? '';
                 $anime->status = $array['Status'] ?? '';
                 $anime->name_japanese = $array['Other name'] ?? '';

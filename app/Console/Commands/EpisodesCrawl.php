@@ -69,6 +69,7 @@ class EpisodesCrawl extends Command
                         $episode->server_link = $node->attr('data-video');
                         $episode->order = $i;
                         $episode->link = $url;
+                        $episode->slug = str_replace('https://gogoanime.cm/', '', $episode->link);
                         $episode->anime_id = $anime->id;
 
                         $episode->save();
