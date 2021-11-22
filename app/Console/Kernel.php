@@ -18,6 +18,7 @@ class Kernel extends ConsoleKernel
         Commands\EpisodesCrawl::class,
         Commands\CategoriesFilter::class,
         Commands\AnimeSlug::class,
+        Commands\FixEpisodesCount::class,
     ];
 
     /**

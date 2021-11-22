@@ -35,33 +35,30 @@ class MALController extends Controller
         // }
 
 
-        $test = "/category/hackgu-returner";
-        $exploded = explode('/', $test);
-        $url = 'https://gogoanime.cm/'. end($exploded). '-episode-1';
+        $url = 'https://gogoanime.cm/category/tenchi-muyou-galaxy-police-mihoshi-space-adventure';
 
-        dd(str_replace('https://gogoanime.cm/', '', $url));
 
         // $crawler->filter('body > div.wrapper > div.main-content.mt-3 > div.container > div.row.mt-3 > aside.col-xs-12.col-lg-8 > section > div.body > ul.anime-list-v');
         $crawler = $this->client->request('GET', $url);
         //dd($crawler);
-        $hi = array('hello');
+        // $hi = array('hello');
 
         //$crawler->filter('body > div.wrapper > div.main-content.mt-3 > div.container > div.row.mt-3 > aside.col-xs-12.col-lg-8 > section > div.body > ul.anime-list-v > li > div.info > a')->each(function ($node) {
         //$crawler->filter('body > div#body > div.container > aside.main > section > div.body > ul.anime-list-v > li > div.info > a[href]')->each(function ($node) {
-        $crawler->filter('body > div#wrapper_inside > div#wrapper > div#wrapper_bg > section.content > section.content_left > div.main_body > div.anime_video_body > div.anime_muti_link > ul > li > a')->each(function ($node) {
-            //$this->list .= str_replace('Choose this server', '', $node->text()) . ' | ' . $node->attr('data-video') . '</br>';
-            $hi['server_name'] = str_replace('Choose this server', '', $node->text());
-            $hi['link'] = $node->attr('data-video');
-            dd($hi);
-        });
+        // $crawler->filter('body > div#wrapper_inside > div#wrapper > div#wrapper_bg > section.content > section.content_left > div.main_body > div.anime_video_body > div.anime_muti_link > ul > li > a')->each(function ($node) {
+        //     //$this->list .= str_replace('Choose this server', '', $node->text()) . ' | ' . $node->attr('data-video') . '</br>';
+        //     $hi['server_name'] = str_replace('Choose this server', '', $node->text());
+        //     $hi['link'] = $node->attr('data-video');
+        //     dd($hi);
+        // });
         // $hello = array('hi');
         // $img = $crawler->filter('body > div#wrapper_inside > div#wrapper > div#wrapper_bg > section.content > section.content_left > div.main_body > div.anime_info_body > div.anime_info_body_bg > img')->attr('src');
-        // $episodes = $crawler->filter('body > div#wrapper_inside > div#wrapper > div#wrapper_bg > section.content > section.content_left > div.main_body > div.anime_video_body > ul#episode_page > li > a')->attr('ep_end');
+        $episodes = $crawler->filter('body > div#wrapper_inside > div#wrapper > div#wrapper_bg > section.content > section.content_left > div.main_body > div.anime_video_body > ul#episode_page > li > a')->last()->attr('ep_end');
         // $type = $crawler->filter('body > div#wrapper_inside > div#wrapper > div#wrapper_bg > section.content > section.content_left > div.main_body > div.anime_info_body > div.anime_info_body_bg > p.type > a')->text();
         // $desc = $crawler->filter('body > div#wrapper_inside > div#wrapper > div#wrapper_bg > section.content > section.content_left > div.main_body > div.anime_info_body > div.anime_info_body_bg > p.type')->each(function ($node) {
         //     array_push($this->hello, $node->text());
         // });
-        dd($hi);
+        dd($episodes);
 
         // $crawler->filter('body > div#body > div.container > aside.main > section > div.body > ul.anime-list-v > li > div.info')->each(function ($node) {
         //     $url = $node->filter('a');
