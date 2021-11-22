@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         Commands\AnimeNameCrawler::class,
         Commands\AnimeDetailsCrawler::class,
         Commands\EpisodesCrawl::class,
+        Commands\CategoriesFilter::class,
     ];
 
     /**
