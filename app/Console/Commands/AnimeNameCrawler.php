@@ -5,7 +5,6 @@ namespace App\Console\Commands;
 use Goutte\Client;
 use App\Models\Anime;
 use Illuminate\Console\Command;
-use Symfony\Component\DomCrawler\Crawler;
 
 class AnimeNameCrawler extends Command
 {
