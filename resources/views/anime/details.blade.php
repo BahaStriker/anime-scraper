@@ -84,9 +84,131 @@
             <div class="section-title">
                 <h5>Episodes list</h5>
             </div>
-            @for ($i = 1; $i <= $anime->episodes; $i++)
-            <a href="/episodes/{{ $anime->slug }}-episode-{{ $i }}" >{{ $i }}</a>
-            @endfor
+            @if ($anime->episodes > 99)
+                    @php
+                    $count =(int)($anime->episodes/99) +1;
+                    @endphp
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        @php
+                        $last =99;
+                        $first =100;
+                        @endphp
+                        @for ($i = 1; $i <= (int)($anime->episodes/99)+1; $i++)
+
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link @if($i ==1) active @endif" data-toggle="tab" href="#tab{{ $i }}"
+                                    role="tab" aria-controls="home" aria-selected="true">@if ($i==1)
+                                    {{ $i }}-{{ $last }}
+
+                                    @elseif ($first == $anime->episodes)
+                                    @php
+                                    $last+=100;
+                                    @endphp
+                                    {{ $first }}
+                                    @elseif ($count == $i)
+                                    {{ $first }}-{{ $anime->episodes }}
+                                    @else
+                                    @php
+                                    $last+=100;
+                                    @endphp
+                                    {{ $first }}-{{ $last }}
+                                    @endif</a>
+                            </li>
+                            @php
+                            $first =$last+1;
+                            @endphp
+                            @endfor
+
+                    </ul>
+
+
+                    <div class="tab-content" id="myTabContent">
+                        @php
+                        $last =99;
+                        $first =100;
+                        $count =(int)($anime->episodes/99) +1;
+                        @endphp
+                        @for ($i = 1; $i <= (int)($anime->episodes/99)+1; $i++)
+
+                            <div class="tab-pane fade show @if ($i==1)
+                                active
+                            @endif" id="tab{{ $i }}" role="tabpanel">
+                                <div class="mt-3">
+                                    @if ($i==1)
+                                        @for ($j = 1; $j <= $last; $j++)
+                                            <a  href="/episodes/{{ $anime->slug }}-episode-{{ $j }}"  @if ($anime->order == $j)
+                                                class = "watched"
+                                                @endif>
+                                                @if ($j< 10)
+                                                0{{ $j }}
+                                                @else
+                                                {{ $j }}
+                                                @endif
+
+                                            </a>
+                                        @endfor
+                                    @elseif ($first == $anime->episodes)
+                                        @php
+                                        $last+=100;
+                                        @endphp
+                                       <a  href="/episodes/{{ $anime->slug }}-episode-{{ $first }}"  @if ($anime->order == $first)
+                                        class = "watched"
+                                        @endif>
+                                        @if ($first< 10)
+                                        0{{ $first }}
+                                        @else
+                                        {{ $first }}
+                                        @endif
+
+                                    </a>
+                                    @elseif ($count == $i)
+                                        @for ($j = $first; $j <= $anime->episodes; $j++)
+                                            <a  href="/episodes/{{ $anime->slug }}-episode-{{ $j }}"  @if ($anime->order == $j)
+                                                class = "watched"
+                                                @endif>
+                                                @if ($j< 10)
+                                                0{{ $j }}
+                                                @else
+                                                {{ $j }}
+                                                @endif
+
+                                            </a>
+                                        @endfor
+                                    @else
+                                        @php
+                                        $last+=100;
+                                        @endphp
+                                        @for ($j = $first; $j <= $last; $j++)
+                                            <a  href="/episodes/{{ $anime->slug }}-episode-{{ $j }}"  @if ($anime->order == $j)
+                                                class = "watched"
+                                                @endif>
+                                                @if ($j< 10)
+                                                0{{ $j }}
+                                                @else
+                                                {{ $j }}
+                                                @endif
+
+                                            </a>
+                                        @endfor
+                                    @endif
+
+
+                                </div>
+
+                            </div>
+                            @php
+                            $first =$last+1;
+                            @endphp
+                        @endfor
+                    </div>
+                    @else
+                    @for ($i = 1; $i <= $anime->episodes; $i++)
+                        <a @if ($anime->order == $i)
+                            class = "watched"
+                            @endif href="/episodes/{{ $anime->slug }}-episode-{{ $i }}">@if ($i< 10)
+                                0{{ $i }} @else {{$i}} @endif </a>
+                                @endfor
+                                @endif
         </div>
         <div class="row">
             <div class="col-lg-8 col-md-8">
@@ -96,7 +218,7 @@
                     </div>
                     <div class="anime__review__item">
                         <div class="anime__review__item__pic">
-                            <img src="img/anime/review-1.jpg" alt="">
+                            <img src="{{ asset('front_files/img/anime/review-1.jpg') }}" alt="">
                         </div>
                         <div class="anime__review__item__text">
                             <h6>Chris Curry - <span>1 Hour ago</span></h6>
@@ -106,7 +228,7 @@
                     </div>
                     <div class="anime__review__item">
                         <div class="anime__review__item__pic">
-                            <img src="img/anime/review-2.jpg" alt="">
+                            <img src="{{ asset('front_files/img/anime/review-2.jpg') }}" alt="">
                         </div>
                         <div class="anime__review__item__text">
                             <h6>Lewis Mann - <span>5 Hour ago</span></h6>
@@ -115,7 +237,7 @@
                     </div>
                     <div class="anime__review__item">
                         <div class="anime__review__item__pic">
-                            <img src="img/anime/review-3.jpg" alt="">
+                            <img src="{{ asset('front_files/img/anime/review-3.jpg') }}" alt="">
                         </div>
                         <div class="anime__review__item__text">
                             <h6>Louis Tyler - <span>20 Hour ago</span></h6>
@@ -124,7 +246,7 @@
                     </div>
                     <div class="anime__review__item">
                         <div class="anime__review__item__pic">
-                            <img src="img/anime/review-4.jpg" alt="">
+                            <img src="{{ asset('front_files/img/anime/review-4.jpg') }}" alt="">
                         </div>
                         <div class="anime__review__item__text">
                             <h6>Chris Curry - <span>1 Hour ago</span></h6>
@@ -134,7 +256,7 @@
                     </div>
                     <div class="anime__review__item">
                         <div class="anime__review__item__pic">
-                            <img src="img/anime/review-5.jpg" alt="">
+                            <img src="{{ asset('front_files/img/anime/review-5.jpg') }}" alt="">
                         </div>
                         <div class="anime__review__item__text">
                             <h6>Lewis Mann - <span>5 Hour ago</span></h6>
@@ -143,7 +265,7 @@
                     </div>
                     <div class="anime__review__item">
                         <div class="anime__review__item__pic">
-                            <img src="img/anime/review-6.jpg" alt="">
+                            <img src="{{ asset('front_files/img/anime/review-6.jpg') }}" alt="">
                         </div>
                         <div class="anime__review__item__text">
                             <h6>Louis Tyler - <span>20 Hour ago</span></h6>
@@ -166,22 +288,22 @@
                     <div class="section-title">
                         <h5>you might like...</h5>
                     </div>
-                    <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-1.jpg">
+                    <div class="product__sidebar__view__item set-bg" data-setbg="{{ asset('front_files/img/sidebar/tv-1.jpg') }}">
                         <div class="ep">18 / ?</div>
                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
                         <h5><a href="#">Boruto: Naruto next generations</a></h5>
                     </div>
-                    <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-2.jpg">
+                    <div class="product__sidebar__view__item set-bg" data-setbg="{{ asset('front_files/img/sidebar/tv-2.jpg') }}">
                         <div class="ep">18 / ?</div>
                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
                         <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
                     </div>
-                    <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-3.jpg">
+                    <div class="product__sidebar__view__item set-bg" data-setbg="{{ asset('front_files/img/sidebar/tv-3.jpg') }}">
                         <div class="ep">18 / ?</div>
                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
                         <h5><a href="#">Sword art online alicization war of underworld</a></h5>
                     </div>
-                    <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-4.jpg">
+                    <div class="product__sidebar__view__item set-bg" data-setbg="{{ asset('front_files/img/sidebar/tv-4.jpg') }}">
                         <div class="ep">18 / ?</div>
                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
                         <h5><a href="#">Fate/stay night: Heaven's Feel I. presage flower</a></h5>
