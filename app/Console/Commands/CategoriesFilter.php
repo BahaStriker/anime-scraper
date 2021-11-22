@@ -40,6 +40,7 @@ class CategoriesFilter extends Command
      */
     public function handle()
     {
+        $this->cat();
         return Command::SUCCESS;
     }
 
