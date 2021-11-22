@@ -29,6 +29,12 @@ class MALController extends Controller
         // $names = explode(', ', $name);
         // dd(end($names));
 
+        $genres = explode(', ', 'Adventure, Drama, Game, Harem, Martial Arts, Seinen');
+        foreach ($genres as $genre) {
+            dd($genre);
+        }
+
+
         $test = "/category/hackgu-returner";
         $exploded = explode('/', $test);
         $url = 'https://gogoanime.cm/'. end($exploded). '-episode-1';
