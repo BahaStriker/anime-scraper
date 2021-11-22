@@ -40,6 +40,9 @@ class EpisodesCrawl extends Command
      */
     public function handle()
     {
+        @set_time_limit(0);
+        ini_set('max_execution_time', -1);
+
         $this->scrape();
         return Command::SUCCESS;
     }
@@ -75,6 +78,7 @@ class EpisodesCrawl extends Command
                         $episode->save();
 
                         $this->info($anime->name_english . ' Episode ' . $i . ' With server ' . str_replace('Choose this server', '', $node->text()) . ' Was added!');
+                        sleep(1);
                     }
                     else {
                         $this->info($anime->name_english . ' Episode ' . $i . ' With server ' . str_replace('Choose this server', '', $node->text()) . ' Exists!!!');
