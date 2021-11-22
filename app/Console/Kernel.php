@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\AnimeNameCrawler::class,
         Commands\AnimeDetailsCrawler::class,
+        Commands\EpisodesCrawl::class,
     ];
 
     /**
