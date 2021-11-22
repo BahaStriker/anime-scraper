@@ -5,14 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Episode extends Model
+class Category extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
-
-    public function anime()
+    public function animes()
     {
-        return $this->belongsTo(Anime::class);
+        return $this->belongsToMany(Anime::class,'anime_category');
     }
 }

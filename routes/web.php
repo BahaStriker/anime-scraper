@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\MALController;
+use App\Models\Anime;
 use Illuminate\Support\Facades\Route;
 
 /*
