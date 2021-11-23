@@ -17,11 +17,13 @@ class HomeController extends Controller
     {
         Session::put('page', 'home');
         $search = request()->input('search') ?? '';
+
         if (!empty($search) && isset($search)) {
-            $animes = Anime::where('name_english', 'like', '%' . $search . '%')->orWhere('name_japanese', 'like', '%' . $search . '%')->latest()->paginate(15);
+            $animes = Anime::whereRaw('LOWER(`name_english`) LIKE ? ',['%'.trim(strtolower($search)).'%'])->orWhereRaw('LOWER(`name_japanese`) LIKE ? ', ['%'.trim(strtolower($search)).'%'])->latest()->paginate(15);
         } else {
             $animes = Anime::latest()->paginate(15);
         }
         return view("search.index",compact('animes','search'));
     }
 }
+

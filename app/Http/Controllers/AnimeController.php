@@ -12,7 +12,9 @@ class AnimeController extends Controller
     public function details($slug)
     {
         Session::put('page', 'none');
+
         $anime = Anime::where('slug', $slug)->first();
+        dd($anime);
         return view('anime.details', compact('anime'));
     }
 
