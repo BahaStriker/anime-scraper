@@ -1,6 +1,6 @@
 <header class="header">
 
-    <div class="navigation-wrapper mt-3">
+    <div class="navigation-wrapper">
 
         <!-- Navigation -->
         <nav class="navbar navbar-top navbar-expand-lg navbar-dark">
@@ -24,11 +24,11 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbar-top-collapsible">
-                    <form class="navbar-search">
+                    <form class="navbar-search" method="GET" action="{{ route('search') }}">
                         <div class="input-group input-group-btn-inside">
-                            <input type="search" class="form-control" placeholder="Search...">
+                            <input type="search" class="form-control" name="search" placeholder="Search...">
                             <div class="">
-                                <button class="btn btn-light btn-merge btn-icon" type="button">
+                                <button class="btn btn-light btn-merge btn-icon" type="submit">
                                     <svg id="lnr-magnifier" viewBox="0 0 1024 1024">
                                         <path class="path1"
                                             d="M966.070 981.101l-304.302-331.965c68.573-71.754 106.232-165.549 106.232-265.136 0-102.57-39.942-199-112.47-271.53s-168.96-112.47-271.53-112.47-199 39.942-271.53 112.47-112.47 168.96-112.47 271.53 39.942 199.002 112.47 271.53 168.96 112.47 271.53 112.47c88.362 0 172.152-29.667 240.043-84.248l304.285 331.947c5.050 5.507 11.954 8.301 18.878 8.301 6.179 0 12.378-2.226 17.293-6.728 10.421-9.555 11.126-25.749 1.571-36.171zM51.2 384c0-183.506 149.294-332.8 332.8-332.8s332.8 149.294 332.8 332.8-149.294 332.8-332.8 332.8-332.8-149.294-332.8-332.8z">
@@ -50,33 +50,51 @@
                 <div class="collapse navbar-collapse" id="navbar-bottom-collapsible">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a href="{{ route('home') }}" class="nav-link active">
+                            @if(Session::get('page') == "home")
+                            @php
+                            $active = "active";
+                            @endphp
+                            @else
+                            @php
+                            $active = "";
+                            @endphp
+                            @endif
+                            <a href="{{ route('home') }}" class="nav-link {{ $active }}">
                                 <span>Home</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <span>IGTV</span>
+                                <span>Ongoing</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            @if(Session::get('page') == "list")
+                            @php
+                            $active = "active";
+                            @endphp
+                            @else
+                            @php
+                            $active = "";
+                            @endphp
+                            @endif
+                            <a href="{{ route('anime.list') }}" class="nav-link {{ $active }}">
+                                <span>Anime List</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <span>Store</span>
+                                <span>Genre</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <span>Decor</span>
+                                <span>Types</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <span>Food</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <span>Art</span>
+                                <span>Dubbed</span>
                             </a>
                         </li>
                     </ul>

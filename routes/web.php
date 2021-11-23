@@ -24,4 +24,9 @@ Route::get('/crawl', [MALController::class, 'index'])->name('index');
 //Anime Routes
 Route::get('/{slug}',[AnimeController::class,'details'])->name('anime.details');
 Route::get('/episodes/{slug}',[AnimeController::class,'watch'])->name('anime.watch');
+ Route::get('/anime/list',[AnimeController::class,'list'])->name('anime.list');
 //End Anime Routes
+
+//search
+ Route::get('/search/anime',[HomeController::class,'search'])->name('search');
+//end search
