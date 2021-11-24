@@ -248,6 +248,7 @@
 
 @media screen and (max-width:991px) {
     .navbar.navbar-bottom.navbar-dark .dropdown-menu {
+        width: auto !important;
         background-color: #192c4b
     }
 
@@ -901,7 +902,7 @@
 }
 
 .navbar-nav .dropdown-menu {
-    left: auto;
+    left: 0;
     right: 0;
     margin: 0;
     pointer-events: none;
@@ -11862,7 +11863,7 @@ a.dropdown-toggle {
 
 .dropdown-item.active,
 .dropdown-item:active {
-    background-color: #5780f7
+    background-color: #e53637
 }
 
 .dropdown-menu {
@@ -12384,7 +12385,7 @@ label {
 .bootstrap-select .dropdown-item.selected {
     color: #fff;
     text-decoration: none;
-    background-color: #007bff
+    background-color: #e53637
 }
 
 .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
@@ -14181,7 +14182,7 @@ div.error {
 .dropdown-select.dropdown-select-primary .dropdown-menu>.dropdown-item .btn:active,
 .dropdown-select.dropdown-select-primary .dropdown-menu>.dropdown-item .btn.active {
     color: #fff !important;
-    background-color: #5780f7 !important
+    background-color: #e53637 !important
 }
 
 .dropdown-select.dropdown-select-secondary .dropdown-menu>.dropdown-item .btn:active,

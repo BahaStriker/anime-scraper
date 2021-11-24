@@ -14,7 +14,6 @@ class AnimeController extends Controller
         Session::put('page', 'none');
 
         $anime = Anime::where('slug', $slug)->first();
-        dd($anime);
         return view('anime.details', compact('anime'));
     }
 
@@ -35,6 +34,25 @@ class AnimeController extends Controller
         } else {
             $animes = Anime::orderBy('name_english', 'ASC')->paginate(15);
         }
-        return view('anime.list', compact('animes','search'));
+        return view('anime.list', compact('animes', 'search'));
+    }
+
+    public function type($type)
+    {
+        Session::put('page', 'type');
+        $types = array('test', 'movie', 'ona', 'ova', 'special','tv series');
+        if (array_search($type, $types)) {
+            $animes = Anime::whereRaw('LOWER(`type`) LIKE ? ', ['%' . trim(strtolower($type)) . '%'])->orderBy('year', 'DESC')->orderBy('name_english','DESC')->paginate(15);
+            return view('anime.types', compact('animes'));
+        }else{
+            return redirect()->route('home');
+        }
+    }
+
+    public function dub()
+    {
+        Session::put('page', 'dub');
+        $animes = Anime::where('name_english','LIKE','%(Dub)%')->orderBy('year', 'DESC')->orderBy('name_english','DESC')->paginate(15);
+        return view('anime.dub', compact('animes'));
     }
 }

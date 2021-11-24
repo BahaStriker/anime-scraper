@@ -1,6 +1,6 @@
 @extends('layouts.front.master')
 @section('title')
-search
+{{ $animes->first()->type }}
 @endsection
 @section('content')
 <section class="product-page spad">
@@ -12,7 +12,7 @@ search
                         <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-6">
                                 <div class="section-title">
-                                    <h4>Search for "{{ $search }}"</h4>
+                                    <h4>{{ $animes->first()->type }}</h4>
                                 </div>
                             </div>
 
@@ -36,6 +36,7 @@ search
                                         @endswitch
 
                                     @endif
+
 
                                     <div class="comment"><i class="fa fa-comments"></i> 69</div>
                                     <div class="view"><i class="fa fa-eye"></i> 69</div>

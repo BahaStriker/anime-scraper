@@ -19,7 +19,7 @@ class HomeController extends Controller
         $search = request()->input('search') ?? '';
 
         if (!empty($search) && isset($search)) {
-            $animes = Anime::whereRaw('LOWER(`name_english`) LIKE ? ',['%'.trim(strtolower($search)).'%'])->orWhereRaw('LOWER(`name_japanese`) LIKE ? ', ['%'.trim(strtolower($search)).'%'])->latest()->paginate(15);
+            $animes = Anime::whereRaw('LOWER(`name_english`) LIKE ? ',['%'.trim(strtolower($search)).'%'])->orWhereRaw('LOWER(`name_japanese`) LIKE ? ', ['%'.trim(strtolower($search)).'%'])->orderBy('year','DESC')->paginate(15);
         } else {
             $animes = Anime::latest()->paginate(15);
         }

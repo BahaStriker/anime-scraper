@@ -82,18 +82,214 @@
                                 <span>Anime List</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <span>Genre</span>
+                        <li class="nav-item dropdown " id="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                Genre
                             </a>
+                            <div class="dropdown-menu dropdown-menu-lg-left"
+                                style="width: 720px; font-size: 14px !important;">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <a href="#" class="dropdown-item">
+                                            <span>TV Series</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>Movies</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>OVAs</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>ONAs</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>Specials</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a href="#" class="dropdown-item">
+                                            <span>TV Series</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>Movies</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>OVAs</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>ONAs</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>Specials</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a href="#" class="dropdown-item">
+                                            <span>TV Series</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>Movies</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>OVAs</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>ONAs</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>Specials</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a href="#" class="dropdown-item">
+                                            <span>TV Series</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>Movies</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>OVAs</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>ONAs</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>Specials</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a href="#" class="dropdown-item">
+                                            <span>TV Series</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>Movies</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>OVAs</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>ONAs</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>Specials</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a href="#" class="dropdown-item">
+                                            <span>TV Series</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>Movies</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>OVAs</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>ONAs</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>Specials</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a href="#" class="dropdown-item">
+                                            <span>TV Series</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>Movies</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>OVAs</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>ONAs</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>Specials</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a href="#" class="dropdown-item">
+                                            <span>TV Series</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>Movies</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>OVAs</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>ONAs</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>Specials</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a href="#" class="dropdown-item">
+                                            <span>TV Series</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>Movies</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>OVAs</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>ONAs</span>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <span>Specials</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown " id="dropdown">
+                            @if(Session::get('page') == "type")
+                            @php
+                            $active = "active";
+                            @endphp
+                            @else
+                            @php
+                            $active = "";
+                            @endphp
+                            @endif
+                            <a class="nav-link dropdown-toggle {{ $active }}" href="#" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                Types
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+                                <a href="{{ route('anime.type', ['type'=>'tv series']) }}" class="dropdown-item">
+                                    <span>TV Series</span>
+                                </a>
+                                <a href="{{ route('anime.type', ['type'=>'movie']) }}" class="dropdown-item">
+                                    <span>Movies</span>
+                                </a>
+                                <a href="{{ route('anime.type', ['type'=>'ova']) }}" class="dropdown-item">
+                                    <span>OVAs</span>
+                                </a>
+                                <a href="{{ route('anime.type', ['type'=>'ona']) }}" class="dropdown-item">
+                                    <span>ONAs</span>
+                                </a>
+                                <a href="{{ route('anime.type', ['type'=>'special']) }}" class="dropdown-item">
+                                    <span>Specials</span>
+                                </a>
+                            </div>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <span>Types</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            @if(Session::get('page') == "dub")
+                            @php
+                            $active = "active";
+                            @endphp
+                            @else
+                            @php
+                            $active = "";
+                            @endphp
+                            @endif
+                            <a href="{{ route('anime.dub') }}" class="nav-link {{ $active }}">
                                 <span>Dubbed</span>
                             </a>
                         </li>

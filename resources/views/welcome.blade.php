@@ -6,6 +6,7 @@
  <!-- Hero Section Begin -->
  <section class="hero">
     <div class="container">
+        
         <div class="hero__slider owl-carousel">
             <div class="hero__items set-bg" data-setbg="{{ asset('front_files/img/hero/hero-1.jpg') }}">
                 <div class="row">
