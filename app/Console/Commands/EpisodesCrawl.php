@@ -59,31 +59,37 @@ class EpisodesCrawl extends Command
             {
                 $client = new Client();
                 $url = 'https://gogoanime.cm/'. end($link). '-episode-' . $i;
-                $crawler = $client->request('GET', $url);
+                $check = Episode::where('link', $url)->get();
+                if($check->count() >= 1 )
+                {
+                    $this->info('PASS!');
+                }
+                else
+                {
+                    $crawler = $client->request('GET', $url);
 
-                $crawler->filter('body > div#wrapper_inside > div#wrapper > div#wrapper_bg > section.content > section.content_left > div.main_body > div.anime_video_body > div.anime_muti_link > ul > li > a')->each(function ($node) use($anime, $i, $url) {
-                    $check = Episode::where('server_name', str_replace('Choose this server', '', $node->text()))->where('server_link', $node->attr('data-video'))->first();
-                    if(!$check)
-                    {
-                        $episode = new Episode();
+                    $crawler->filter('body > div#wrapper_inside > div#wrapper > div#wrapper_bg > section.content > section.content_left > div.main_body > div.anime_video_body > div.anime_muti_link > ul > li > a')->each(function ($node) use ($anime, $i, $url) {
+                        $check = Episode::where('server_name', str_replace('Choose this server', '', $node->text()))->where('server_link', $node->attr('data-video'))->first();
+                        if (!$check) {
+                            $episode = new Episode();
 
-                        $episode->title = $anime->name_english . ' Episode ' . $i;
-                        $episode->server_name = str_replace('Choose this server', '', $node->text());
-                        $episode->server_link = $node->attr('data-video');
-                        $episode->order = $i;
-                        $episode->link = $url;
-                        $episode->slug = str_replace('https://gogoanime.cm/', '', $episode->link);
-                        $episode->anime_id = $anime->id;
+                            $episode->title = $anime->name_english . ' Episode ' . $i;
+                            $episode->server_name = str_replace('Choose this server', '', $node->text());
+                            $episode->server_link = $node->attr('data-video');
+                            $episode->order = $i;
+                            $episode->link = $url;
+                            $episode->slug = str_replace('https://gogoanime.cm/', '', $episode->link);
+                            $episode->anime_id = $anime->id;
 
-                        $episode->save();
+                            $episode->save();
 
-                        $this->info($anime->name_english . ' Episode ' . $i . ' With server ' . str_replace('Choose this server', '', $node->text()) . ' Was added!');
-                        sleep(1);
-                    }
-                    else {
-                        $this->info($anime->name_english . ' Episode ' . $i . ' With server ' . str_replace('Choose this server', '', $node->text()) . ' Exists!!!');
-                    }
-                });
+                            $this->info($anime->name_english . ' Episode ' . $i . ' With server ' . str_replace('Choose this server', '', $node->text()) . ' Was added!');
+                            sleep(1);
+                        } else {
+                            $this->info($anime->name_english . ' Episode ' . $i . ' With server ' . str_replace('Choose this server', '', $node->text()) . ' Exists!!!');
+                        }
+                    });
+                }
             }
 
 
