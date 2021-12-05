@@ -49,7 +49,7 @@ class EpisodesCrawl extends Command
 
     public function scrape()
     {
-        $animes = Anime::get();
+        $animes = Anime::where('id', '>', '7014')->get();
 
         foreach($animes as $anime)
         {
