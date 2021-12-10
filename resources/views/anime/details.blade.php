@@ -8,9 +8,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb__links">
-                    <a href="index.html"><i class="fa fa-home"></i> Home</a>
-                    <a href="categories.html">Categories</a>
-                    <span>Romance</span>
+                    <a href="{{ route('home') }}"><i class="fas fa-home"></i> Home </a>
+                    <i class="fas fa-chevron-right"></i>
+
+                    <span>{{ $anime->name_english }}</span>
                 </div>
             </div>
         </div>
@@ -27,7 +28,7 @@
             <div class="col-lg-3">
                 <div class="anime__details__pic set-bg" data-setbg="{{ asset($anime->thumnail) }}">
                     <div class="comment"><i class="fa fa-comments"></i> 69</div>
-                    <div class="view"><i class="fa fa-eye"></i> 69</div>
+                    <div class="view"><i class="fas fa-eye"></i> 69</div>
                 </div>
             </div>
             <div class="col-lg-9">

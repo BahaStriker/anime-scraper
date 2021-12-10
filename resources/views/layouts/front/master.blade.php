@@ -16,13 +16,14 @@
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="{{ asset('front_files/css/bootstrap.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('front_files/css/font-awesome.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('front_files/font-awesome/5.13.1/css/all.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('front_files/css/elegant-icons.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('front_files/css/plyr.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('front_files/css/nice-select.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('front_files/css/owl.carousel.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('front_files/css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('front_files/css/style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('front_files/css/app.css') }}" type="text/css">
 </head>
 
 <body>

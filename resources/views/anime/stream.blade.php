@@ -11,8 +11,11 @@
             <div class="col-lg-12">
                 <div class="breadcrumb__links">
                     <a href="index.html"><i class="fa fa-home"></i> Home</a>
+                    <i class="fas fa-chevron-right"></i>
                     <a href="{{ route('anime.details', ['slug'=>$episode->first()->anime->slug]) }}">{{
                         $episode->first()->anime->name_english }}</a>
+                     <i class="fas fa-chevron-right"></i>
+
                     <span>{{$episode->first()->title}}</span>
                 </div>
             </div>
