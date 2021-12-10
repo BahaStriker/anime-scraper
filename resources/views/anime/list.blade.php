@@ -88,7 +88,8 @@ Anime list
                                 @default
                                 <div class="ep" style="color: darkgray">{{ $item->episodes }} / ?</div>
                                 @endswitch
-
+                            @else
+                            <div class="ep" style="color: darkgray">Movie</div>
                              @endif
 
                         </div>

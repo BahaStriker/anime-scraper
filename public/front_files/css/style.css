@@ -1218,7 +1218,13 @@ ol {
 	display: inline-block;
 	position: relative;
 }
-
+.breadcrumb__links i {
+	font-size: 15px;
+	color: #ffffff;
+	margin-right: 18px;
+	display: inline-block;
+	position: relative;
+}
 .breadcrumb__links a i {
 	margin-right: 5px;
 	color: #e53637;
@@ -1228,8 +1234,7 @@ ol {
 	position: absolute;
 	right: -14px;
 	top: 0;
-	content: "";
-	font-family: "FontAwesome";
+
 }
 
 .breadcrumb__links span {
